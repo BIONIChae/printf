@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#define UNUSED(x) (void)(x)
-#define BUFF_SIZE 1024
+#define NOT_USED(x) (void)(x)
+#define SIZE_OF_BUFF 1024
 
 /* Flags */
 #define FUNC_MINUS 1
