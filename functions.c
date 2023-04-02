@@ -118,22 +118,27 @@ int print_int(va_list types, char buff[],
 
 		n = convert_size_number(n, size);
 
-			if (n == 0)
-				buff[i--] = '0';
+		if (n == 0)
+			buff[i--] = '0';
 
-			buff[SIZE_OF_BUFF - 1] = '\0';
-		num = (unsigned long int) n;
+		buff[SIZE_OF_BUFF - 1] = '\0';
+		num = (unsigned long int)n;
 
-			if (n < 0)
+		if (n < 0)
 		{
-				num = (unsigned long int)((-1) * n);
-				is_negative = 1;
+			num = (unsigned long int)((-1) * n);
+			is_negative = 1;
 		}
 
-			while (num > 0)
+		while (num > 0)
 		{
-				buff[i--] = (num % 10) + '0';
-				num /= 10;
+			buff[i--] = (num % 10) + '0';
+			num /= 10;
+		}
+
+		if (flags & PLUS_FLAG && n >= 0)
+		{
+			buff[i--] = '+';
 		}
 
 		i++;

@@ -13,6 +13,7 @@
 #define FLAG_ZERO 4
 #define FLAG_HASH 8
 #define FLAG_SPACE 16
+#define PLUS_FLAG (1 << 3)
 
 /* Sizes */
 #define SIZE_LONG 2
@@ -104,5 +105,6 @@ int is_digit(char);
 long int convert_size_number(long int num, int size);
 long int convert_size_unsignd(unsigned long int num, int size);
 void print_buffer(char [], int*);
+
 
 #endif

@@ -28,7 +28,13 @@ int handle_print(const char *fmt, int *index, va_list list, char buff[],
 	for (i = 0; format_types[i].fmt != '\0'; i++)
 	{
 		if (fmt[*index] == format_types[i].fmt)
+		{
+			if (fmt[*index] == 'i' || fmt[*index] == 'd')
+			{
+				return (print_int(list, buff, width, flags, precision, size));
+			}
 			return (format_types[i].fn(list, buff, flags, width, precision, size));
+		}
 	}
 
 	if (format_types[i].fmt == '\0')
