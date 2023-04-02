@@ -8,15 +8,15 @@
 #define SIZE_OF_BUFF 1024
 
 /* Flags */
-#define FUNC_MINUS 1
-#define FUNC_PLUS 2
-#define FUNC_ZERO 4
-#define FUNC_HASH 8
-#define FUNC_SPACE 16
+#define FLAG_MINUS 1
+#define FLAG_PLUS 2
+#define FLAG_ZERO 4
+#define FLAG_HASH 8
+#define FLAG_SPACE 16
 
 /* Sizes */
-#define FUNC_LONG 2
-#define FUNC_SHORT 1
+#define SIZE_LONG 2
+#define SIZE_SHORT 1
 
 /**
  * struct fmt - Op.

@@ -11,8 +11,8 @@ int get_flags(const char *_format, int *i)
 	int current_i, j;
 	int flags = 0;
 	const char FLAGS_CHAR[] = {'-', '+', '0', '#', ' ', '\0'};
-	const int FLAGS_ARRAY[] = {FUNC_MINUS, FUNC_PLUS, FUNC_ZERO,
-					FUNC_HASH, FUNC_SPACE, 0};
+	const int FLAGS_ARRAY[] = {FLAG_MINUS, FLAG_PLUS, FLAG_ZERO,
+					FLAG_HASH, FLAG_SPACE, 0};
 
 	for (current_i = *i + 1; _format[current_i] != '\0'; current_i++)
 	{

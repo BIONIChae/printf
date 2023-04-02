@@ -11,12 +11,12 @@
  *
  * Return: Num of chars.
  */
-<<<<<<< HEAD
+
 int print_pointer(va_list types, char buff[],
 	int flags, int width, int precision, int size)
 {
 	char extra_c = 0, padd = ' ';
-	int ind = SIZE_OF_BUFF - 2, length = 2, padd_start = 1;
+	int index = SIZE_OF_BUFF - 2, length = 2, padd_start = 1;
 	unsigned long num_addrs;
 	char map_to[] = "0123456789abcdef";
 	void *address = va_arg(types, void *);
@@ -30,63 +30,23 @@ int print_pointer(va_list types, char buff[],
 	buff[SIZE_OF_BUFF - 1] = '\0';
 	NOT_USED(precision);
 
-	num_addrs = (unsigned long address);
+	num_addrs = (unsigned long) address;
 
 	while (num_addrs > 0)
 	{
-		buff[ind--] = map_to[num_addrs % 16];
-=======
-int print_pointer(va_list types, char buffer[],
-	int flags, int width, int precision, int size)
-{
-	char extra_c = 0, padd = ' ';
-	int ind = BUFF_SIZE - 2, length = 2, padd_start = 1; /* length=2, for '0x' */
-	unsigned long num_addrs;
-	char map_to[] = "0123456789abcdef";
-	void *addrs = va_arg(types, void *);
-
-	UNUSED(width);
-	UNUSED(size);
-
-	if (addrs == NULL)
-		return (write(1, "(nil)", 5));
-
-	buffer[BUFF_SIZE - 1] = '\0';
-	UNUSED(precision);
-
-	num_addrs = (unsigned long)addrs;
-
-	while (num_addrs > 0)
-	{
-		buffer[ind--] = map_to[num_addrs % 16];
->>>>>>> ab633c79defa821038dbc11ffcdee75fb2c25aad
+		buff[index--] = map_to[num_addrs % 16];
 		num_addrs /= 16;
 		length++;
 	}
-
-<<<<<<< HEAD
-	if ((flags & FUNC_ZERO) && !(flags & FUNC_MINUS))
+	if ((flags & FLAG_ZERO) && !(flags & FLAG_MINUS))
 		padd = '0';
-	if (flags & FUNC_PLUS)
+	if (flags & FLAG_PLUS)
 		extra_c = '+', length++;
-	else if (flags & FUNC_SPACE)
+	else if (flags & FLAG_SPACE)
 		extra_c = ' ', length++;
 
 	index++;
-
-=======
-	if ((flags & F_ZERO) && !(flags & F_MINUS))
-		padd = '0';
-	if (flags & F_PLUS)
-		extra_c = '+', length++;
-	else if (flags & F_SPACE)
-		extra_c = ' ', length++;
-
-	ind++;
-
-	/*return (write(1, &buffer[i], BUFF_SIZE - i - 1));*/
->>>>>>> ab633c79defa821038dbc11ffcdee75fb2c25aad
-	return (write_pointer(buffer, ind, length,
+	return (write_pointer(buff, index, length,
 		width, flags, padd, extra_c, padd_start));
 }
 

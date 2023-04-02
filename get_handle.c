@@ -9,7 +9,7 @@
  * @flags: Sums up active flags
  * @width: The width.
  * @precision: Specifies the precision.
- * @size: Size specifier
+ * @size: Size specifier.
  *
  * Return: Either 1 or 2;
  */

@@ -3,9 +3,9 @@
 void print_buffer(char buff[], int *buff_index);
 
 /**
- * _printf - The printf function.
- * @fmt: The format.
- * Return: characters.
+ * _printf - The printf function
+ * @fmt: The format
+ * Return: characters
  */
 int _printf(const char *fmt, ...)
 {

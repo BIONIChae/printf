@@ -2,14 +2,14 @@
 
 /**
  * print_char - Prints a character
- * @types: Lists args
+ * @types: Lists args.
  * @buff: Buffer array.
  * @flags: Finds active flags.
  * @width: the width.
  * @precision: The precision.
  * @size: Size specifier.
  *
- * Return: Num of characters
+ * Return: Num of characters.
  */
 int print_char(va_list types, char buff[],
 int flags, int width, int precision, int size)
@@ -24,7 +24,7 @@ int flags, int width, int precision, int size)
  * @types: Lists arguments.
  * @buff: The buffer array.
  * @flags:  Finds active flags.
- * @width: the width.
+ * @width: The width.
  * @precision: Specifies the precision.
  * @size: Size specifier.
  *
@@ -56,7 +56,7 @@ int print_string(va_list types, char buff[],
 
 	if (width > length)
 	{
-		if (flags & FUNC_MINUS)
+		if (flags & FLAG_MINUS)
 		{
 			write(1, &str[0], length);
 			for (i = width - length; i > 0; i--)
@@ -79,7 +79,7 @@ int print_string(va_list types, char buff[],
  * @types: List of args.
  * @buff: Buffer array.
  * @flags:  Sums up active flags.
- * @width: the width.
+ * @width: The width.
  * @precision: Specifies the precision.
  * @size: Size specifier.
  *
@@ -122,7 +122,7 @@ int print_int(va_list types, char buff[],
 				buff[i--] = '0';
 
 			buff[SIZE_OF_BUFF - 1] = '\0';
-		num = (unsigned long int n);
+		num = (unsigned long int) n;
 
 			if (n < 0)
 		{

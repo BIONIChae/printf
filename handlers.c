@@ -20,7 +20,7 @@ int flags, int width, int precision, int size)
 	NOT_USED(precision);
 	NOT_USED(size);
 
-	if (flags & FUNC_ZERO)
+	if (flags & FLAG_ZERO)
 		padd = '0';
 
 	buff[i++] = c;
@@ -32,11 +32,11 @@ int flags, int width, int precision, int size)
 		for (i = 0; i < width - 1; i++)
 			buff[SIZE_OF_BUFF - i - 2] = padd;
 
-		if (flags & FUNC_MINUS)
+		if (flags & FLAG_MINUS)
 			return (write(1, &buff[0], 1) +
 				write(1, &buff[SIZE_OF_BUFF - i - 1], width - 1));
 
-			return (write(1, &buff[SIZE_OF_BUFF - i - 1], width - 1) +
+		return (write(1, &buff[SIZE_OF_BUFF - i - 1], width - 1) +
 					write(1, &buff[0], 1));
 	}
 
@@ -62,13 +62,13 @@ int write_number(int is_negative, int index, char buff[],
 
 	NOT_USED(size);
 
-	if ((flags & FUNC_ZERO) && !(flags & FUNC_MINUS))
+	if ((flags & FLAG_ZERO) && !(flags & FLAG_MINUS))
 		padd = '0';
 	if (is_negative)
 		extra_ch = '-';
-	else if (flags & FUNC_PLUS)
+	else if (flags & FLAG_PLUS)
 		extra_ch = '+';
-	else if (flags & FUNC_SPACE)
+	else if (flags & FLAG_SPACE)
 		extra_ch = ' ';
 
 	return (write_num(index, buff, flags, width, precision,
@@ -110,19 +110,19 @@ int write_num(int index, char buff[],
 		for (i = 1; i < width - length + 1; i++)
 			buff[i] = padd;
 		buff[i] = '\0';
-		if (flags & FUNC_MINUS && padd == ' ')
+		if (flags & FLAG_MINUS && padd == ' ')
 		{
 			if (extra_c)
 				buff[--index] = extra_c;
 			return (write(1, &buff[index], length) + write(1, &buff[1], i - 1));
 		}
-		else if (!(flags & FUNC_MINUS) && padd == ' ')
+		else if (!(flags & FLAG_MINUS) && padd == ' ')
 		{
 			if (extra_c)
 				buff[--index] = extra_c;
 			return (write(1, &buff[1], i - 1) + write(1, &buff[index], length));
 		}
-		else if (!(flags & FUNC_MINUS) && padd == '0')
+		else if (!(flags & FLAG_MINUS) && padd == '0')
 		{
 			if (extra_c)
 				buff[--padd_start] = extra_c;
@@ -170,7 +170,7 @@ int write_unsignd(int is_negative, int index,
 		length++;
 	}
 
-	if ((flags & FUNC_ZERO) && !(flags & FUNC_MINUS))
+	if ((flags & FLAG_ZERO) && !(flags & FLAG_MINUS))
 		padd = '0';
 
 	if (width > length)
@@ -178,9 +178,9 @@ int write_unsignd(int is_negative, int index,
 		for (i = 0; i < width - length; i++)
 			buff[i] = padd;
 
-		buffer[i] = '\0';
+		buff[i] = '\0';
 
-		if (flags & FUNC_MINUS)
+		if (flags & FLAG_MINUS)
 		{
 			return (write(1, &buff[index], length) + write(1, &buff[0], i));
 		}
@@ -216,7 +216,7 @@ int write_pointer(char buff[], int index, int length,
 		for (i = 3; i < width - length + 3; i++)
 			buff[i] = padd;
 		buff[i] = '\0';
-		if (flags & FUNC_MINUS && padd == ' ')
+		if (flags & FLAG_MINUS && padd == ' ')
 		{
 			buff[--index] = 'x';
 			buff[--index] = '0';
@@ -224,7 +224,7 @@ int write_pointer(char buff[], int index, int length,
 				buff[--index] = extra_c;
 			return (write(1, &buff[index], length) + write(1, &buff[3], i - 3));
 		}
-		else if (!(flags & FUNC_MINUS) && padd == ' ')
+		else if (!(flags & FLAG_MINUS) && padd == ' ')
 		{
 			buff[--index] = 'x';
 			buff[--index] = '0';
@@ -232,7 +232,7 @@ int write_pointer(char buff[], int index, int length,
 				buff[--index] = extra_c;
 			return (write(1, &buff[3], i - 3) + write(1, &buff[index], length));
 		}
-		else if (!(flags & FUNC_MINUS) && padd == '0')
+		else if (!(flags & FLAG_MINUS) && padd == '0')
 		{
 			if (extra_c)
 				buff[--padd_start] = extra_c;

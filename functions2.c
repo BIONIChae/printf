@@ -69,12 +69,12 @@ int print_octal(va_list types, char buff[],
 		num /= 8;
 	}
 
-	if (flags & FUNC_HASH && init_num != 0)
+	if (flags & FLAG_HASH && init_num != 0)
 		buff[i--] = '0';
 
 	i++;
 
-	return (write_unsignd(0, i, buffer, flags, width, precision, size));
+	return (write_unsignd(0, i, buff, flags, width, precision, size));
 }
 
 /**
@@ -139,7 +139,7 @@ int print_hexa(va_list types, char map_to[], char buff[],
 	if (num == 0)
 		buff[i--] = '0';
 
-	buff[SIZE_OF_ARRAY - 1] = '\0';
+	buff[SIZE_OF_BUFF - 1] = '\0';
 
 	while (num > 0)
 	{
@@ -147,7 +147,7 @@ int print_hexa(va_list types, char map_to[], char buff[],
 		num /= 16;
 	}
 
-	if (flags & FUNC_HASH && init_num != 0)
+	if (flags & FLAG_HASH && init_num != 0)
 	{
 		buff[i--] = flag_ch;
 		buff[i--] = '0';
